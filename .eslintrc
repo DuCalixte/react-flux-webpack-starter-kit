@@ -21,5 +21,10 @@
     }
   },
 
-  "rules": {}
+  "rules": {
+    "no-var": 0,
+    "no-console": 0,
+    "newline-after-var": 0,
+    "vars-on-top": 1
+    }
 }

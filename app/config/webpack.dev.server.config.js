@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+/* eslint import/no-extraneous-dependencies: ["error", {"peerDependencies": true}] */
 var WebpackDevServer = require('webpack-dev-server');
 var webpackConfig = require('./webpack.config.js');
 
@@ -10,16 +11,15 @@ new WebpackDevServer(webpack(webpackConfig), {
   inline: true,
   hot: true,
   stats: 'errors-only',
-	colors: true,
+  colors: true,
   historyApiFallback: true,
   headers: {
     'Access-Control-Allow-Origin': `http://localhost:${port}`,
-    'Access-Control-Allow-Headers': 'X-Requested-With'
-  }
-}).listen(webpackPort, 'localhost', function (err) {
+    'Access-Control-Allow-Headers': 'X-Requested-With',
+  },
+}).listen(webpackPort, 'localhost', (err) => {
   if (err) {
-    console.log(err);
+    console.error(err);
   }
-
-  console.log(`webpack dev server listening on localhost:${webpackPort}`);
+  console.warn(`webpack dev server listening on localhost:${webpackPort}`);
 });
