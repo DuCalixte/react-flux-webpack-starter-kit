@@ -1,9 +1,6 @@
 import './App.scss';
 export default class App extends React.Component {
 	render() {
-		console.log('process.env.PORT', process.env.PORT);
-		console.log('process.env.WEBPACK_PORT', process.env.WEBPACK_PORT);
-		// console.log('PORT', PORT);
 		return (
 			<div className="jumbotron">
 				<h1>Hello ye world!<i className="fa fa-ravelry" aria-hidden="true"></i></h1>

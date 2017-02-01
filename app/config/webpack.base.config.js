@@ -83,6 +83,7 @@ module.exports = {
     }),
     new Webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
+      chunks: ['vendor'],
     }),
     new Webpack.ProvidePlugin({
       React: 'react',
@@ -96,8 +97,8 @@ module.exports = {
     extensions: ['', '.jsx', '.js'],
     alias: {
       actions: path.join(__dirname, '../../actions'),
-      components: path.join(__dirname, '../../components'),
-      views: path.join(__dirname, '../../components/views'),
+      components: path.join(__dirname, '../components'),
+      views: path.join(__dirname, '../components/views'),
       controllers: path.join(__dirname, '../../controllers'),
       stores: path.join(__dirname, '../../stores'),
       utilities: path.join(__dirname, '../../utilities'),
