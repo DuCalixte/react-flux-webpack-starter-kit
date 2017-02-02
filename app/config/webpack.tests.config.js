@@ -12,11 +12,9 @@ config.plugins.push(
   })
 );
 
-config.module.loaders[3] = {
-  test: /\.s?css$/,
-  exclude: /node_modules/,
-  loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&minify&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!sass-loader'),
-};
+for (var index in config.module.loaders){
+  Object.assign(config.module.loaders[index], {exclude: /node-modules/});
+}
 
 config.vendor.push('sinon', 'enzyme');
 

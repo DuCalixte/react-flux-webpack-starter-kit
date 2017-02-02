@@ -3,7 +3,6 @@
 // Karma configuration
 // Generated on Tue Jan 31 2017 20:17:25 GMT-0500 (EST)
 var testWebpackConfig = require('./webpack.tests.config.js');
-
 var port = process.env.PORT || '9876';
 
 module.exports = function (config) {
@@ -53,7 +52,7 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress', 'mocha'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['mocha'],
 
 
     // web server port
@@ -75,8 +74,8 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    // browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
+    // browsers: ['Chrome'],
 
 
     // Continuous Integration mode

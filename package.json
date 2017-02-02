@@ -11,7 +11,7 @@
     "start": "node app/config/webpack.dev.server.config.js",
     "no-start": "webpack-dev-server --progress --config app/config/webpack-dev-server.config.js --port ${PORT-8080}",
     "deploy": "npm run clean && NODE_ENV=production webpack -p --config webpack.production.config.js",
-    "test": "node_modules/karma-cli/bin/karma start app/config/karma.conf.js",
+    "test": "npm run clean && node_modules/karma-cli/bin/karma start app/config/karma.conf.js",
     "watch-test": "npm run test -- --single-run=false",
     "lint": "eslint app",
     "lintfix": "eslint app --fix"
