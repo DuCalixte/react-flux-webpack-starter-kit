@@ -1,17 +1,25 @@
 var webpack = require('webpack');
-/* eslint import/no-extraneous-dependencies: ["error", {"peerDependencies": true}] */
-var WebpackDevServer = require('webpack-dev-server');
-var webpackConfig = require('./webpack.development.config.js');
 
-var port = process.env.PORT || '8080';
-var webpackPort = process.env.WEBPACK_PORT || '8090';
+var WebpackDevServer = require('webpack-dev-server');
+
+var webpackConfig = require('./webpack.dashboard.config.js');
+
+const port = process.env.PORT || '8080';
+const webpackPort = process.env.WEBPACK_PORT || '8090';
 
 new WebpackDevServer(webpack(webpackConfig), {
   publicPath: '/public/app/',
+  noInfo: true,
   inline: true,
   hot: true,
-  stats: 'errors-only',
-  colors: true,
+  quiet: true,
+  log: () => {},
+  stats : {
+    chunks: false,
+    chunkModules: false,
+    colors: true,
+    errorsOnly: true
+},
   historyApiFallback: true,
   headers: {
     'Access-Control-Allow-Origin': `http://localhost:${port}`,
@@ -23,3 +31,5 @@ new WebpackDevServer(webpack(webpackConfig), {
   }
   console.warn(`webpack dev server listening on localhost:${webpackPort}`);
 });
+
+//server.listen(port, host, () => console.log(`{green-fg}Dev server started on:{/} ${schema}://${host}:${port}`));

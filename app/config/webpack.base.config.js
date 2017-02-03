@@ -96,12 +96,12 @@ module.exports = {
   resolve: {
     extensions: ['', '.jsx', '.js'],
     alias: {
-      actions: path.join(__dirname, '../../actions'),
+      actions: path.join(__dirname, '../actions'),
       components: path.join(__dirname, '../components'),
       views: path.join(__dirname, '../components/views'),
-      controllers: path.join(__dirname, '../../controllers'),
-      stores: path.join(__dirname, '../../stores'),
-      utilities: path.join(__dirname, '../../utilities'),
+      controllers: path.join(__dirname, '../controllers'),
+      stores: path.join(__dirname, '../stores'),
+      utilities: path.join(__dirname, '../utilities'),
     },
   },
 };
