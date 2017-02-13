@@ -1,0 +1,5 @@
+react-flux-webpack-starter-kit@0.0.0 /Users/pouchon/Development/git/projects/javascript/react-flux-webpack-starter-kit
+├─┬ UNMET PEER DEPENDENCY extract-text-webpack-plugin@1.0.1
+│ └── async@1.5.2 
+└── UNMET PEER DEPENDENCY webpack@2.2.1
+

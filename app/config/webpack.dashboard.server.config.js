@@ -4,22 +4,44 @@ var WebpackDevServer = require('webpack-dev-server');
 
 var webpackConfig = require('./webpack.dashboard.config.js');
 
+// var Dashboard = require('webpack-dashboard');
+// var DashboardPlugin = require('webpack-dashboard/plugin');
+
+// const dashboard = new Dashboard();
 const port = process.env.PORT || '8080';
 const webpackPort = process.env.WEBPACK_PORT || '8090';
 
+// webpack(webpackConfig).plugins.push(new DashboardPlugin(dashboard.setData));
+// webpack(webpackConfig).apply(new DashboardPlugin(dashboard.setData));
+
 new WebpackDevServer(webpack(webpackConfig), {
   publicPath: '/public/app/',
+  clientLogLevel: "none",
+  quiet: true,
   noInfo: true,
   inline: true,
   hot: true,
-  quiet: true,
-  log: () => {},
-  stats : {
-    chunks: false,
-    chunkModules: false,
-    colors: true,
-    errorsOnly: true
-},
+  stats: 'errors-only',
+  // type: 'clear',
+  // log: () => {},
+//   stats : {
+//     hash: false,
+//     version: false,
+//     timings: false,
+//     assets : false,
+//     chunks : false,
+//     chunkModules : false,
+//     chunk : false,
+//     chunkModule : false,
+//     children: false,
+//     cached: false,
+//     reasons: false,
+//     source: false,
+//     errorDetails: true,
+//     chunkOrigins: false,
+//     colors: true,
+//     errorsOnly: true
+// },
   historyApiFallback: true,
   headers: {
     'Access-Control-Allow-Origin': `http://localhost:${port}`,
