@@ -9,11 +9,11 @@ config.plugins.push(
   new Webpack.ProvidePlugin({
     ReactDOM: 'react-dom',
     ReactTestUtils: 'react-addons-test-utils',
-  })
+  }),
 );
 
-for (var index in config.module.loaders){
-  Object.assign(config.module.loaders[index], {exclude: /node-modules/});
+for (var index in config.module.loaders) {
+  Object.assign(config.module.loaders[index], { exclude: /node-modules/ });
 }
 
 config.vendor.push('sinon', 'enzyme');

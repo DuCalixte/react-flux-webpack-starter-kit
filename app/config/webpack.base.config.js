@@ -19,7 +19,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '../..', 'public/app'),
-    filename: '[name].bundle.js',
+    filename: '[name].js',
   },
   externals: {
     jQuery: 'jquery',

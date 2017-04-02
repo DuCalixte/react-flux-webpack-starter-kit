@@ -16,12 +16,18 @@ const webpackPort = process.env.WEBPACK_PORT || '8090';
 
 new WebpackDevServer(webpack(webpackConfig), {
   publicPath: '/public/app/',
-  clientLogLevel: "none",
+  clientLogLevel: 'none',
   quiet: true,
   noInfo: true,
   inline: true,
   hot: true,
   stats: 'errors-only',
+  colors: true,
+  historyApiFallback: true,
+  headers: {
+    'Access-Control-Allow-Origin': `http://localhost:${port}`,
+    'Access-Control-Allow-Headers': 'X-Requested-With',
+  },
   // type: 'clear',
   // log: () => {},
 //   stats : {
@@ -54,4 +60,4 @@ new WebpackDevServer(webpack(webpackConfig), {
   console.warn(`webpack dev server listening on localhost:${webpackPort}`);
 });
 
-//server.listen(port, host, () => console.log(`{green-fg}Dev server started on:{/} ${schema}://${host}:${port}`));
+// server.listen(port, host, () => console.log(`{green-fg}Dev server started on:{/} ${schema}://${host}:${port}`));
