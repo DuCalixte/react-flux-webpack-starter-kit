@@ -8,6 +8,7 @@ config.entry.app.unshift(`webpack-dev-server/client?http://localhost:${webpackPo
 // You could also use 'webpack/hot/only-dev-server' instead of
 // 'webpack/hot/dev-server' to keep view when error occurs.
 
+config.target= 'node';
 config.output.publicPath = `//localhost:${webpackPort}/public/app/`;
 
 config.plugins.push(new Webpack.HotModuleReplacementPlugin());

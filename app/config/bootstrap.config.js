@@ -1,7 +1,10 @@
-var extractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  styleLoader: extractTextWebpackPlugin.extract('style-loader', 'css-loader!sass-loader'),
+  styleLoader: ExtractTextWebpackPlugin.extract(
+    {fallback: 'style-loader', 
+      use: ['css-loader, sass-loader']
+    }),
   scripts: {
     transition: true,
     alert: true,
