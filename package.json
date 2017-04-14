@@ -13,8 +13,8 @@
     "test": " npm run clean && cross-env WEBPACK_DEVTOOL=\"eval\" NODE_ENV=\"test\" node_modules/karma-cli/bin/karma start app/config/karma.conf.js",
     "watch-test": "npm run test -- --single-run=false",
     "deploy": "npm run clean && cross-env WEBPACK_DEVTOOL=\"nosources-source-map\" NODE_ENV=\"production\" webpack --config app/config/webpack.prod.config.js -p --bail",
-    "dev-server": "webpack-dev-server --config app/config/webpack.dev.config.js --open",
-    "hapi-server": "cross-env WEBPACK_DEVTOOL=\"inline-source-map\" NOTIFY=\"prompt\" webpack-dashboard -- node app/config/hapi-server.js",
+    "dev-server": "cross-env NOTIFY=\"prompt\" webpack-dev-server --config app/config/webpack.dev.config.js --open",
+    "hapi-server": "cross-env NOTIFY=\"prompt\" webpack-dashboard -- node app/config/hapi-server.js",
     "lint": "eslint app",
     "lintfix": "eslint app --fix"
   },

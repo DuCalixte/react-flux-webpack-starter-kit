@@ -15,7 +15,6 @@ config.devServer = {
 	quiet: true,
   noInfo: true,
   hot: true,
-  errorsOnly: true,
   historyApiFallback: true,
   headers: {
     'Access-Control-Allow-Origin': `http://localhost:${port}`,
