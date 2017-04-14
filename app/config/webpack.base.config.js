@@ -1,51 +1,34 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Webpack = require('webpack');
 const autoPrefixer = require('autoprefixer');
+const webpackDevTool = (process.env && process.env.WEBPACK_DEVTOOL) || 'cheap-eval-source-map';
 
-const path = require('path');
+const { join, resolve } = require('path');
 require('es6-promise').polyfill();
 require('./bootstrap.config.js');
 require('./font-awesome.config.js');
 
 module.exports = {
 	entry: {
-		app: [path.resolve(__dirname, '../Routes.jsx')],
+		app: [resolve(__dirname, '../Routes.jsx')],
 		bootstrap: 'bootstrap-loader',
 		'font-awesome': 'font-awesome-loader',
-		vendor: ['alt', 'babel-polyfill', 'classnames']
-		// vendor: [
-		// 	'alt',
-		// 	'babel-polyfill',
-		// 	'classnames',
-		// 	'bootstrap-sass',
-		// 	'font-awesome',
-		// 	'es6-promise',
-		// 	'lodash',
-		// 	'react',
-		// 	'react-dom',
-		// 	'react-router',
-		// 	'react-bootstrap',
-		// 	'superagent',
-		// 	'react-hot-loader'
-		// ]
+		vendor: [
+			'alt',
+			'babel-polyfill',
+			'classnames',
+			'bootstrap-sass',
+			'es6-promise',
+			'lodash',
+			'react',
+			'react-dom',
+			'react-router',
+			'react-bootstrap',
+			'superagent'
+		]
 	},
-	// vendor: [
-	// 	'alt',
-	// 	'babel-polyfill',
-	// 	'classnames',
-	// 	'bootstrap-sass',
-	// 	'font-awesome',
-	// 	'es6-promise',
-	// 	'lodash',
-	// 	'react',
-	// 	'react-dom',
-	// 	'react-router',
-	// 	'react-bootstrap',
-	// 	'superagent',
-	// 	'react-hot-loader'
-	// ],
 	output: {
-		path: path.join(__dirname, '../..', 'public/app'),
+		path: join(__dirname, '../..', 'public/app'),
 		filename: '[name].js'
 	},
 	externals: {
@@ -59,14 +42,12 @@ module.exports = {
 				loader: 'babel-loader'
 			}, {
 				test: /\.json$/,
-				loader: 'json'
+				loader: 'json-loader'
 			}, {
 				test: /\.s?css$/,
-				// loader: ExtractTextPlugin.extract({ fallback: 'style-loader', loader: 'css-loader' })
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					use: ['css-loader?modules&minify&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'postcss-loader', 'sass-loader']
-					// use: 'css-loader?modules&minify&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!sass-loader'
 				})
 			}, {
 				test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
@@ -95,40 +76,14 @@ module.exports = {
 			}
 		]
 	},
-	// postcss: [autoPrefixer],
-	devtool: process.env.WEBPACK_DEVTOOL || 'cheap-module-source-map',
+	devtool: webpackDevTool,
 	plugins: [
-		new ExtractTextPlugin({
-			filename: 'styles.css',
-		  allChunks: true
-		}),
+		new ExtractTextPlugin({filename: 'styles.css', allChunks: true}),
 		new Webpack.LoaderOptionsPlugin({
 			options: {
-				// context: filePaths.root,
 				postcss: [autoPrefixer],
-				// vendor: [
-				// 	'alt',
-				// 	'babel-polyfill',
-				// 	'classnames',
-				// 	'bootstrap-sass',
-				// 	'font-awesome',
-				// 	'es6-promise',
-				// 	'lodash',
-				// 	'react',
-				// 	'react-dom',
-				// 	'react-router',
-				// 	'react-bootstrap',
-				// 	'superagent',
-				// 	'react-hot-loader'
-				// ]
 			}
 		}),
-		// new ExtractTextPlugin({
-		// 	filename: (getPath) => {
-		// 		return getPath('css/[name].css').replace('css/js', 'css');
-		// 	},
-		// 	allChunks: true
-		// }),
 		new Webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: JSON.stringify('development'),
@@ -137,43 +92,40 @@ module.exports = {
 		}),
 		new Webpack.optimize.CommonsChunkPlugin({name: 'bootstrap', chunks: ['bootstrap']}),
 		new Webpack.optimize.CommonsChunkPlugin({name: 'font-awesome', chunks: ['font-awesome']}),
-		// new Webpack.optimize.CommonsChunkPlugin({name: 'vendor', chunks: ['vendor']}),
 		new Webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',
 			chunks: ['vendor']
-			// chunks: [
-			// 	'alt',
-			// 	'babel-polyfill',
-			// 	'classnames',
-			// 	'bootstrap-sass',
-			// 	'font-awesome',
-			// 	'es6-promise',
-			// 	'lodash',
-			// 	'react',
-			// 	'react-dom',
-			// 	'react-router',
-			// 	'react-bootstrap',
-			// 	'superagent',
-			// 	'react-hot-loader'
-			// ],
-			// minChunks: function(module) {
-			// 	// this assumes your vendor imports exist in the node_modules directory
-			// 	return module.context && module.context.indexOf('node_modules') !== -1;
-			// }
 		}),
-		new Webpack.ProvidePlugin({React: 'react', _: 'lodash', classnames: 'classnames', $: 'jquery', jQuery: 'jquery'})
+		new Webpack.ProvidePlugin({
+			React: 'react',
+			Router: 'react-router',
+			ReactDOM: 'react-dom',
+			_: 'lodash',
+			classnames: 'classnames',
+			$: 'jquery',
+			jQuery: 'jquery'
+		}),
+		new Webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+				WEBPACK_DEVTOOL: JSON.stringify(process.env.WEBPACK_DEVTOOL || 'cheap-eval-source-map'),
+				APP_OID: JSON.stringify(process.env.APP_OID || 'productionApp'),
+				PORT: JSON.stringify(process.env.PORT || 8080),
+				WEBPACK_PORT: JSON.stringify(process.env.WEBPACK_PORT || 8090)
+			}
+		})
 	],
 	resolve: {
 		extensions: [
 			'.jsx', '.js'
 		],
 		alias: {
-			actions: path.join(__dirname, '../actions'),
-			components: path.join(__dirname, '../components'),
-			views: path.join(__dirname, '../components/views'),
-			controllers: path.join(__dirname, '../controllers'),
-			stores: path.join(__dirname, '../stores'),
-			utilities: path.join(__dirname, '../utilities')
+			actions: join(__dirname, '../actions'),
+			components: join(__dirname, '../components'),
+			views: join(__dirname, '../components/views'),
+			controllers: join(__dirname, '../controllers'),
+			stores: join(__dirname, '../stores'),
+			utilities: join(__dirname, '../utilities')
 		}
 	}
 };
