@@ -27,32 +27,7 @@ new WebpackDevServer(webpack(webpackConfig), {
   headers: {
     'Access-Control-Allow-Origin': `http://localhost:${port}`,
     'Access-Control-Allow-Headers': 'X-Requested-With',
-  },
-  // type: 'clear',
-  // log: () => {},
-//   stats : {
-//     hash: false,
-//     version: false,
-//     timings: false,
-//     assets : false,
-//     chunks : false,
-//     chunkModules : false,
-//     chunk : false,
-//     chunkModule : false,
-//     children: false,
-//     cached: false,
-//     reasons: false,
-//     source: false,
-//     errorDetails: true,
-//     chunkOrigins: false,
-//     colors: true,
-//     errorsOnly: true
-// },
-  historyApiFallback: true,
-  headers: {
-    'Access-Control-Allow-Origin': `http://localhost:${port}`,
-    'Access-Control-Allow-Headers': 'X-Requested-With',
-  },
+  }
 }).listen(webpackPort, 'localhost', (err) => {
   if (err) {
     console.error(err);

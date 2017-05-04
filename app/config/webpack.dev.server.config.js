@@ -3,8 +3,8 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const webpackConfig = require('./webpack.development.config.js');
 
-let port = process.env.PORT || '8070';
-let webpackPort = process.env.WEBPACK_PORT || '8090';
+const port = process.env.PORT || '8070';
+const webpackPort = process.env.WEBPACK_PORT || '8090';
 
 // webpackConfig.devServer = {
 //   contentBase: '/public/app/',
@@ -37,7 +37,7 @@ new WebpackDevServer(webpack(webpackConfig), {
   headers: {
     'Access-Control-Allow-Origin': `http://localhost:${port}`,
     'Access-Control-Allow-Headers': 'X-Requested-With',
-  }
+  },
 }).listen(webpackPort, 'localhost', (err) => {
   if (err) {
     console.error(err);

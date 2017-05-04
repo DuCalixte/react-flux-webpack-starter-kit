@@ -2,10 +2,11 @@
 
 // Karma configuration
 // Generated on Tue Jan 31 2017 20:17:25 GMT-0500 (EST)
-var testWebpackConfig = require('./webpack.tests.config.js');
-var port = process.env.PORT || '9876';
+const testWebpackConfig = require('./webpack.tests.config.js');
 
-module.exports = function (config) {
+const port = process.env.PORT || '9876';
+
+module.exports = (config) => {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)

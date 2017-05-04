@@ -14,9 +14,10 @@
     "watch-test": "npm run test -- --single-run=false",
     "deploy": "npm run clean && cross-env WEBPACK_DEVTOOL=\"nosources-source-map\" NODE_ENV=\"production\" webpack --config app/config/webpack.prod.config.js -p --bail",
     "dev-server": "cross-env NOTIFY=\"prompt\" webpack-dev-server --config app/config/webpack.dev.config.js --open",
-    "hapi-server": "cross-env NOTIFY=\"prompt\" webpack-dashboard -- node app/config/hapi-server.js",
+    "dash-server": "cross-env NOTIFY=\"prompt\" webpack-dashboard -- node app/config/hapi-server.js",
+    "hapi-server": "cross-env NOTIFY=\"prompt\" webpack-dev-server -- node app/config/hapi-server.js",
     "lint": "eslint app",
-    "lintfix": "eslint app --fix"
+    "lintfix": "eslint app --fix --ext js,jsx"
   },
   "repository": {
     "type": "git",
@@ -89,6 +90,7 @@
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-flow-vars": "^0.5.0",
     "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "faker": "^4.1.0",
     "fs": "0.0.1-security",
     "html-loader": "^0.4.5",
@@ -111,7 +113,7 @@
     "node-sass": "^4.5.2",
     "react-addons-test-utils": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
-    "sinon": "^2.1.0",
+    "sinon": "^2.2.0",
     "sinon-chai": "^2.9.0",
     "webpack-build-notifier": "^0.1.13",
     "webpack-dashboard": "^0.3.0",
