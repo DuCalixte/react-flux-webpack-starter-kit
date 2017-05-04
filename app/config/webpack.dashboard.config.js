@@ -13,7 +13,7 @@ config.entry.app.unshift(`webpack-dev-server/client?http://localhost:${webpackPo
 config.output.publicPath = `//localhost:${webpackPort}/public/app/`;
 config.devtool = 'inline-source-map';
 
-// config.plugins.push(new DashboardPlugin(dashboard.setData));
+config.plugins.push(new DashboardPlugin(dashboard.setData));
 config.plugins.push(new Webpack.NoErrorsPlugin());
 config.plugins.push(new Webpack.HotModuleReplacementPlugin());
 const format = {
