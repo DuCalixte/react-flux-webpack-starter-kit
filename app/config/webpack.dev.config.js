@@ -1,5 +1,5 @@
 const Webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./webpack.base.config.js');
 
 const { resolve } = require('path');
@@ -15,7 +15,6 @@ config.devServer = {
 	quiet: true,
   noInfo: true,
   hot: true,
-  errorsOnly: true,
   historyApiFallback: true,
   headers: {
     'Access-Control-Allow-Origin': `http://localhost:${port}`,
@@ -26,7 +25,6 @@ config.devServer = {
 config.plugins.push(new Webpack.HotModuleReplacementPlugin());
 config.plugins.push(new Webpack.NamedModulesPlugin());
 config.plugins.push(new Webpack.NoEmitOnErrorsPlugin());
-// config.plugins.push(new HtmlWebpackPlugin());
 
 if (process.env.NOTIFY === 'prompt') {
 	const WebpackBuildNotifierPlugin = require('webpack-build-notifier');

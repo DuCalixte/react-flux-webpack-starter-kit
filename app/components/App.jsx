@@ -1,8 +1,6 @@
 import './App.scss';
 
-// export default class App extends React.Component {
 export default function App() {
-  // render() {
   return (
       <div className="jumbotron">
         <h1>Hello ye world!<i className="fa fa-ravelry" aria-hidden="true"></i>
@@ -13,7 +11,6 @@ export default function App() {
         </p>
       </div>
   );
-  // }
 }
 
 App.propTypes = {};
