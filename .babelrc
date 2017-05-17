@@ -1,9 +1,7 @@
 {
-  /*"plugins": ["transform-runtime", {
-    "helpers": false,
-    "polyfill": false,
-    "regenerator": true
-  }],*/
   "presets": ["es2015", "react", "stage-2"],
-  "compact": true
+  "compact": true,
+  "plugins": [
+    "react-hot-loader/babel"
+  ]
 }
