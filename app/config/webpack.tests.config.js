@@ -9,7 +9,6 @@ config.plugins.push(
   })
 );
 
-
 config.externals = {
   jsdom: 'window',
   cheerio: 'window',
