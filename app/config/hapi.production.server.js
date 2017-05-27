@@ -1,7 +1,7 @@
 const Hapi = require('hapi');
 const Inert = require('inert');
 const Vision = require('vision');
-const {resolve} = require('path');
+const {resolve, join} = require('path');
 
 const appOid = (process.env && process.env.APP_OID) || 'productionApp';
 const port = (process.env && process.env.PORT) || 3000;
@@ -9,17 +9,33 @@ const port = (process.env && process.env.PORT) || 3000;
 const server = new Hapi.Server();
 server.connection({port: port});
 
+console.log('_____________________________');
+console.log(resolve(__dirname, '../../index.html'));
+console.log(join(__dirname, '../../public/app'));
+
 server.route({
-  method: 'GET',
-  path: '/',
+  method: 'GET', path: '/',
   // handler: (request, reply) => {
   //   return reply.view('app-spa-compiled', {request: request});
   // }
   handler: (request, reply) => {
+        directory: {
+            path: join(__dirname, '../../public/app')
+        }
     const filename = resolve(__dirname, '../../index.html');
     return reply.file(filename).type('text/html');
   }
 });
+
+// server.route({
+//   method: 'GET',
+//   path: '/',
+//   handler: {
+//     directory: {
+//       path: 'public/app'
+//     }
+//   }
+// });
 
 var plugins = [require('inert'), require('vision'), require('hapi-heroku-helpers')];
 
