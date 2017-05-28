@@ -88,7 +88,7 @@ module.exports = {
     new Webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        PORT: JSON.stringify('8080'),
+        PORT: JSON.stringify(process.env.PORT || 8080),
       },
     }),
     new Webpack.optimize.CommonsChunkPlugin({ name: 'bootstrap', chunks: ['bootstrap'] }),
