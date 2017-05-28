@@ -8,7 +8,10 @@ const appOid = (process.env && process.env.APP_OID) || 'productionApp';
 //   filename: '[name]-spa-compiled.js'
 // };
 
-config.plugins.push(new Webpack.NoEmitOnErrorsPlugin(), new Webpack.DefinePlugin({
+config.plugins.push(
+  new Webpack.NoEmitOnErrorsPlugin(),
+  new Webpack.optimize.UglifyJsPlugin({ sourceMap: true, minimize: true, beautify: false, comments: false }),
+  new Webpack.DefinePlugin({
   'process.env': {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
   }
