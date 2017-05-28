@@ -9,33 +9,40 @@ const port = (process.env && process.env.PORT) || 3000;
 const server = new Hapi.Server();
 server.connection({port: port});
 
-console.log('_____________________________');
-console.log(resolve(__dirname, '../../index.html'));
-console.log(join(__dirname, '../../public/app'));
-
-server.route({
-  method: 'GET', path: '/',
-  // handler: (request, reply) => {
-  //   return reply.view('app-spa-compiled', {request: request});
-  // }
-  handler: (request, reply) => {
-        directory: {
-            path: join(__dirname, '../../public/app')
-        }
-    const filename = resolve(__dirname, '../../index.html');
-    return reply.file(filename).type('text/html');
+const routes = [
+  {
+    method: 'GET',
+    path: '/public/app/{file}',
+    handler: (request, reply) => {
+      directory: {
+        path: join(__dirname, '../../public/app')
+      }
+      const file = request.params.file;
+      const filename = resolve(__dirname, `../../public/app/${file}`);
+      return reply.file(filename);
+    }
+  }, {
+    method: 'GET',
+    path: '/public/app/fonts/{file}',
+    handler: (request, reply) => {
+      directory: {
+        path: join(__dirname, '../../public/app/fonts')
+      }
+      const file = request.params.file;
+      const filename = resolve(__dirname, `../../public/app/fonts/${file}`);
+      return reply.file(filename);
+    }
+  }, {
+    method: 'GET',
+    path: '/',
+    handler: function(request, reply) {
+      const filename = resolve(__dirname, '../../index.html');
+      return reply.file(filename).type('text/html');
+    }
   }
-});
+];
 
-// server.route({
-//   method: 'GET',
-//   path: '/',
-//   handler: {
-//     directory: {
-//       path: 'public/app'
-//     }
-//   }
-// });
+server.route(routes);
 
 var plugins = [require('inert'), require('vision'), require('hapi-heroku-helpers')];
 
@@ -49,8 +56,7 @@ server.register(plugins, (err) => {
       jsx: require('hapi-react-views')
     },
     relativeTo: __dirname,
-    path: `../../public/app`
-    // path: `../../public/${appOid}/app`
+    path: join(__dirname, '../../public/app')
   });
 
 });

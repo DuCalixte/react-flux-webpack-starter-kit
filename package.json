@@ -15,7 +15,7 @@
     "dashboard": "cross-env WEBPACK_DEVTOOL=\"inline-source-map\" NOTIFY=\"dashboard\" npm run build",
     "test": " npm run clean && cross-env WEBPACK_DEVTOOL=\"eval\" NODE_ENV=\"test\" node_modules/karma-cli/bin/karma start app/config/karma.conf.js",
     "watch-test": "npm run test -- --single-run=false",
-    "prod-build": "npm run clean && cross-env WEBPACK_DEVTOOL=\"nosources-source-map\" NODE_ENV=\"production\" webpack --config app/config/webpack.prod.config.js -p --bail",
+    "prod-build": "npm run clean && cross-env WEBPACK_DEVTOOL=\"source-map\" NODE_ENV=\"production\" webpack -p --config app/config/webpack.prod.config.js --bail",
     "deploy": "npm run prod-build && node app/config/hapi.production.server.js",
     "dev-server": "cross-env NOTIFY=\"prompt\" webpack-dev-server --config app/config/webpack.dev.config.js --open",
     "dash-server": "cross-env NOTIFY=\"prompt\" webpack-dashboard -- node app/config/hapi-server.js",
