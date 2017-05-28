@@ -6,7 +6,6 @@ const {resolve, join} = require('path');
 const appOid = (process.env && process.env.APP_OID) || 'productionApp';
 const port = (process.env && process.env.PORT) || 3000;
 
-console.log('process.env.PORT', port);
 const server = new Hapi.Server();
 server.connection({port: port});
 
