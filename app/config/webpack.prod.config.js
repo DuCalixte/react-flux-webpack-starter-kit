@@ -14,7 +14,8 @@ config.plugins.push(
   new Webpack.optimize.UglifyJsPlugin({ sourceMap: true, minimize: true, beautify: false, comments: false }),
   new Webpack.DefinePlugin({
   'process.env': {
-    NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production'),
+    HOST: JSON.stringify(process.env.HOST || 'localhost'),
   }
 }), new Webpack.LoaderOptionsPlugin({minimize: true, debug: false}));
 
