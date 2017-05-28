@@ -5,15 +5,11 @@ const {resolve, join} = require('path');
 
 const appOid = (process.env && process.env.APP_OID) || 'productionApp';
 const port = (process.env && process.env.PORT) || 3000;
-const host = (process.env && process.env.HOST) || 'localhost'
 
+console.log('process.env.PORT', port);
 const server = new Hapi.Server();
-// server.connection({port: port, host: host});
+server.connection({port: port});
 
-console.log('process.env.HOST', process.env.HOST);
-server.connection({
-    port: process.env.PORT || 3000
-});
 
 const routes = [
   {
