@@ -1,1 +1,1 @@
-web: export PORT=80; npm run deploy
+web: npm run deploy

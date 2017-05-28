@@ -3,6 +3,7 @@ const config = require('./webpack.base.config.js');
 const {resolve} = require('path');
 
 const appOid = (process.env && process.env.APP_OID) || 'productionApp';
+console.log('process.env.PORT', process.env.PORT);
 // config.output = {
 //   path: resolve(__dirname, '../..', `public/${appOid}/app`),
 //   filename: '[name]-spa-compiled.js'

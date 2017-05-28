@@ -7,7 +7,10 @@ const appOid = (process.env && process.env.APP_OID) || 'productionApp';
 const port = (process.env && process.env.PORT) || 3000;
 
 const server = new Hapi.Server();
-server.connection({port: port});
+// server.connection({port: port});
+server.connection({
+    port: process.env.PORT || 3000
+});
 
 const routes = [
   {
