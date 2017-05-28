@@ -8,12 +8,12 @@ const port = (process.env && process.env.PORT) || 3000;
 const host = (process.env && process.env.HOST) || 'localhost'
 
 const server = new Hapi.Server();
-server.connection({port: port, host: host});
+// server.connection({port: port, host: host});
 
 console.log('process.env.HOST', process.env.HOST);
-// server.connection({
-//     port: process.env.PORT || 3000
-// });
+server.connection({
+    port: process.env.PORT || 3000
+});
 
 const routes = [
   {

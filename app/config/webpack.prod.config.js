@@ -4,6 +4,7 @@ const {resolve} = require('path');
 
 const appOid = (process.env && process.env.APP_OID) || 'productionApp';
 console.log('process.env.PORT', process.env.PORT);
+console.log('process.env.HOST', process.env.HOST);
 // config.output = {
 //   path: resolve(__dirname, '../..', `public/${appOid}/app`),
 //   filename: '[name]-spa-compiled.js'
