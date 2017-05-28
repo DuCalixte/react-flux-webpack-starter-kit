@@ -21,8 +21,7 @@
     "dash-server": "cross-env NOTIFY=\"prompt\" webpack-dashboard -- node app/config/hapi-server.js",
     "hapi-server": "cross-env NOTIFY=\"prompt\" webpack-dev-server -- node app/config/hapi-server.js",
     "lint": "eslint app",
-    "lintfix": "eslint app --fix --ext js,jsx",
-    "start": "cross-env PORT=\"5000\" HOST=\"starter-kit-react-0001.herokuapp.com\" node app/config/hapi.production.server.js"
+    "lintfix": "eslint app --fix --ext js,jsx"
   },
   "repository": {
     "type": "git",
