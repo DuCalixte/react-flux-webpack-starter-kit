@@ -1,1 +1,2 @@
-web: npm run deploy
+worker: npm run prod-build
+web: npm start
