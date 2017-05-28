@@ -8,6 +8,8 @@ const port = (process.env && process.env.PORT) || 3000;
 
 const server = new Hapi.Server();
 // server.connection({port: port});
+
+console.log('process.env.HOST', process.env.HOST);
 server.connection({
     port: process.env.PORT || 3000
 });
