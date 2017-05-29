@@ -15,14 +15,14 @@
     "dashboard": "cross-env WEBPACK_DEVTOOL=\"inline-source-map\" NOTIFY=\"dashboard\" npm run build",
     "test": " npm run clean && cross-env WEBPACK_DEVTOOL=\"eval\" NODE_ENV=\"test\" node_modules/karma-cli/bin/karma start app/config/karma.conf.js",
     "watch-test": "npm run test -- --single-run=false",
-    "prod-build": "cross-env WEBPACK_DEVTOOL=\"source-map\" NODE_ENV=\"production\" webpack -p --config app/config/webpack.prod.config.js --bail",
-    "deploy": "npm run prod-build && node app/config/hapi.production.server.js",
+    "prod-build": "cross-env WEBPACK_DEVTOOL=\"source-map\" NODE_ENV=\"production\" webpack --config app/config/webpack.prod.config.js -p --bail",
+    "deploy": "npm run prod-build && node --optimize_for_size --max_old_space_size=460 --gc_interval=100  app/config/hapi.production.server.js",
     "dev-server": "cross-env NOTIFY=\"prompt\" webpack-dev-server --config app/config/webpack.dev.config.js --open",
     "dash-server": "cross-env NOTIFY=\"prompt\" webpack-dashboard -- node app/config/hapi-server.js",
     "hapi-server": "cross-env NOTIFY=\"prompt\" webpack-dev-server -- node app/config/hapi-server.js",
     "lint": "eslint app",
     "lintfix": "eslint app --fix --ext js,jsx",
-    "start": "node app/config/hapi.production.server.js"
+    "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 app/config/hapi.production.server.js"
   },
   "repository": {
     "type": "git",

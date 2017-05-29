@@ -1,2 +1,3 @@
-worker: npm run prod-build
-web: npm start
+oldworker: npm run prod-build
+oldweb: npm start
+web: npm run deploy
